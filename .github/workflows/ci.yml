@@ -21,11 +21,18 @@ jobs:
       with:
         ruby-version: '3.0'
 
+    - name: Install Serverspec
+      run: |
+        sudo gem install serverspec
+
     - name: Install dependencies
       run: |
         sudo apt-get update
         sudo apt-get install -y ansible
         sudo gem install serverspec rake
+
+    - name: Check gem installation
+      run: sudo gem list serverspec
 
     - name: Run Serverspec Tests
       run: |

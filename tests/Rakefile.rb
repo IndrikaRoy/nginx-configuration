@@ -1,5 +1,6 @@
 require 'rake'
 require 'serverspec'
+require 'rubygems' 
 
 namespace :spec do
   desc "Run serverspec to all hosts"
