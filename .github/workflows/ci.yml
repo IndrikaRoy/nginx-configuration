@@ -37,7 +37,7 @@ jobs:
     - name: Run Serverspec Tests
       run: |
         cd tests
-        rake spec
+        rake spec --trace
 
     - name: Deploy with Ansible if tests pass
       if: success()
