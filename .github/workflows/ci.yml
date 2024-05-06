@@ -30,14 +30,22 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y ansible
         sudo gem install serverspec rake
+        sudo gem install bundler
+        sudo bundle install
 
     - name: Check gem installation
       run: sudo gem list serverspec
 
+    - name: Set GEM_PATH
+      run: sudo echo "GEM_PATH=$(gem env gemdir)" >> $GITHUB_ENV
+    
+    - name: Print Gem Environment
+      run: sudo gem env
+    
     - name: Run Serverspec Tests
       run: |
         cd tests
-        rake spec --trace
+        bundle exec rake spec --trace
 
     - name: Deploy with Ansible if tests pass
       if: success()
